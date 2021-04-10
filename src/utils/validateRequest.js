@@ -1,18 +1,20 @@
-const jwt = require('jsonwebtoken');
+/* eslint-disable consistent-return */
+const jwt = require("jsonwebtoken");
 
 const validateRequest = (req, res, next) => {
-  const token = req.headers['authorization']
+  const token = req.headers.authorization;
 
-  if (!token) return res.json({err: 'Não autorizado. Token não informado'}).status(401)
+  if (!token)
+    return res.json({ err: "Não autorizado. Token não informado" }).status(401);
 
-  jwt.verify(token.split(' ')[1], process.env.SECRET, (err, decoded) => {
-    if (err) return res.json({err: 'Token inválido'}).status(401)
-    
-    req.userId = decoded.id
+  jwt.verify(token.split(" ")[1], process.env.SECRET, (err, decoded) => {
+    if (err) return res.json({ err: "Token inválido" }).status(401);
 
-    console.log('User', decoded.id)
+    req.userId = decoded.id;
+
+    console.log("User", decoded.id);
     next();
-  })
-}
+  });
+};
 
-module.exports = validateRequest
+module.exports = validateRequest;
