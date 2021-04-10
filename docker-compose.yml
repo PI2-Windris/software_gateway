@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db
+    ports: 
+      - '5432:5432'
+    volumes:
+      - ./db:/var/lib/postgresql/data
+  
+  user_service:
+    build: .
+    depends_on:
+      - postgres
+    ports: 
+      - 8000:8000
+    volumes:
+      - ../user_service:/home/node/app
+      - ../user_service/node_modules:/home/node/app/node_modules/
+    environment:
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
+      SECRET: ${SECRET}
+      PORT: ${USER_PORT}
+
+  gateway_service:
+    build: ../software_gateway
+    ports: 
+      - 8001:8001
+    volumes:
+      - .:/home/node/app
+      - ./node_modules:/home/node/app/node_modules/
+    environment:
+      SECRET: ${SECRET}
+      PORT: ${GATEWAY_PORT}
+      USER_HOST: ${USER_HOST}
+      USER_PORT: ${USER_PORT}
+
