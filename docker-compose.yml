@@ -39,7 +39,9 @@ services:
       PORT: ${GATEWAY_PORT}
       USER_HOST: ${USER_HOST}
       USER_PORT: ${USER_PORT}
-  
+      DATA_STORAGE_HOST: ${DATA_STORAGE_HOST}
+      DATA_STORAGE_PORT: ${DATA_STORAGE_PORT}
+
   eletronic_gateway:
     build: ../eletronic_gateway
     ports:

@@ -37,6 +37,15 @@ app.use(
   })
 );
 
+app.use(
+  "/generator",
+  createProxyMiddleware({
+    target: `http://${process.env.DATA_STORAGE_HOST}:${process.env.DATA_STORAGE_PORT}`,
+    changeOrigin: true,
+  })
+);
+
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log("Server running on port ", process.env.PORT);
