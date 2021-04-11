@@ -39,4 +39,39 @@ services:
       PORT: ${GATEWAY_PORT}
       USER_HOST: ${USER_HOST}
       USER_PORT: ${USER_PORT}
+  
+  eletronic_gateway:
+    build: ../eletronic_gateway
+    ports:
+      - 8883:8883
+    volumes:
+      - ../eletronic_gateway:/home/node/app
+      - ../eletronic_gateway/node_modules:/home/node/app/node_modules/
+    environment:
+      PORT: ${ELETRONIC_GATEWAY_PORT}
 
+  data_storage:
+    build: ../data_storage
+    depends_on:
+      - mongo
+    ports:
+      - 8002:8002
+    volumes:
+      - ../data_storage:/home/node/app
+      - ../data_storage/node_modules:/home/node/app/node_modules/
+    environment:
+      PORT: ${DATA_STORAGE_PORT}
+      MONGO_URI: ${MONGO_URI}
+      MQTT_PORT: ${ELETRONIC_GATEWAY_PORT}
+      MQTT_HOST: ${MQTT_HOST}
+      MQTT_TOPIC: ${MQTT_TOPIC}
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db:/data/db
