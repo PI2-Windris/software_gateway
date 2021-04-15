@@ -35,8 +35,9 @@ cp .env.sample .env
 
 sudo docker-compose up
 
-# Execute as migrações
+# Execute as migrações e o seed do banco de dados
 sudo docker-compose exec user_service npx sequelize-cli db:migrate
+sudo docker-compose exec user_service npx sequelize-cli db:seed:all
 ```
 
 ### Rotas atuais
@@ -77,6 +78,7 @@ Request Headers:
 
 ### Rotas do Serviço de Usuário
 
+Há o parâmetro de Query page a ser utilizado para fins de paginação. Por exemplo `/user_service/user?page=10`
 - GET `/user_service/user`
 ```
 [
@@ -131,8 +133,31 @@ Response Body:
   "updatedAt": "2021-04-10T17:38:23.427Z",
   "createdAt": "2021-04-10T17:38:23.427Z",
   "isadmin": false,
-  "createdat": "2021-04-10T17:38:23.427Z",
-  "updatedat": "2021-04-10T17:38:23.427Z"
+}
+```
+
+- PUT `/user_service/user/:id`
+
+O corpo da request são os campos do perfil de usuário, sendo todos os campso opcionais
+Request Body: 
+```
+{
+  "password": "123456",
+  "email": "paulo@email.com",
+  "name": "paulo"
+}
+```
+
+Response Body:
+```
+{
+  "id": "8069cbbd-d5c4-4928-95a6-e61b446a0dfe",
+  "isAdmin": false,
+  "email": "paulo@email.com",
+  "name": "paulo",
+  "updatedAt": "2021-04-10T17:38:23.427Z",
+  "createdAt": "2021-04-10T17:38:23.427Z",
+  "isadmin": false,
 }
 ```
 
