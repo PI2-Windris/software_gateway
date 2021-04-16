@@ -45,6 +45,16 @@ app.use(
   })
 );
 
+app.use(
+  "/update",
+  createProxyMiddleware({
+    target: `http://${process.env.UPDATE_HOST}:${process.env.UPDATE_PORT}`,
+    changeOrigin: true,
+    pathRewrite: {
+      "^/update": "",
+    }
+  })
+)
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
