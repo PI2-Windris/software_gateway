@@ -41,6 +41,8 @@ services:
       USER_PORT: ${USER_PORT}
       DATA_STORAGE_HOST: ${DATA_STORAGE_HOST}
       DATA_STORAGE_PORT: ${DATA_STORAGE_PORT}
+      UPDATE_HOST: ${UPDATE_HOST}
+      UPDATE_PORT: ${UPDATE_PORT}
 
   eletronic_gateway:
     build: ../eletronic_gateway
@@ -68,6 +70,20 @@ services:
       MQTT_HOST: ${MQTT_HOST}
       MQTT_TOPIC: ${MQTT_TOPIC}
 
+  update_service:
+    build: ../updade_service
+    depends_on:
+      - mongo
+    ports:
+      - 8003:8003
+    volumes:
+      - ../updade_service:/home/node/app
+      - ../updade_service/node_modules:/home/node/app/node_modules/
+    environment:
+      MONGO_URI: ${MONGO_URI}
+      MQTT_PORT: ${ELETRONIC_GATEWAY_PORT}
+      PORT: ${UPDATE_PORT}
+  
   mongo:
     image: mongo
     environment:
@@ -77,3 +93,4 @@ services:
       - "27017:27017"
     volumes:
       - ./db:/data/db
+  
