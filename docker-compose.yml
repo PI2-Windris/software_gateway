@@ -69,6 +69,13 @@ services:
       MQTT_PORT: ${ELETRONIC_GATEWAY_PORT}
       MQTT_HOST: ${MQTT_HOST}
       MQTT_TOPIC: ${MQTT_TOPIC}
+      PROCESSING_PORT: ${PROCESSING_PORT}
+      PROCESSING_HOST: ${PROCESSING_HOST}
+      USER_HOST: ${USER_HOST}
+      USER_PORT: ${USER_PORT}
+      MAIL_USER: ${MAIL_USER}
+      MAIL_PASS: ${MAIL_PASS}
+      MAIL_ENABLED: ${MAIL_ENABLED}
 
   update_service:
     build: ../updade_service
@@ -84,6 +91,20 @@ services:
       MQTT_PORT: ${ELETRONIC_GATEWAY_PORT}
       PORT: ${UPDATE_PORT}
   
+  processing_service:
+    build: ../processing_service
+    entrypoint: python -m flask run --host=0.0.0.0 --port=${PROCESSING_PORT}
+    ports:
+      - 8004:8004
+    volumes:
+      - ../processing_service:/app
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_APP: ./app.py
+      PORT: ${PROCESSING_PORT}
+      DATA_STORAGE_HOST: ${DATA_STORAGE_HOST}
+      DATA_STORAGE_PORT: ${DATA_STORAGE_PORT}
+
   mongo:
     image: mongo
     environment:
