@@ -43,6 +43,9 @@ sudo docker-compose up
 # Execute as migrações e o seed do banco de dados
 sudo docker-compose exec user_service npx sequelize-cli db:migrate
 sudo docker-compose exec user_service npx sequelize-cli db:seed:all
+
+# Execute o seed do data storage
+sudo docker-compose exec data_storage npm run seed
 ```
 
 ### Rotas atuais
