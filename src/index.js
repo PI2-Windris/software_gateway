@@ -3,6 +3,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const { createProxyMiddleware } = require("http-proxy-middleware");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../swagger.json');
 
 const validateRequest = require("./utils/validateRequest");
 
@@ -12,6 +14,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(
   "/user_service/auth",
   createProxyMiddleware({

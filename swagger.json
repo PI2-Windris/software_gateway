@@ -1,0 +1,323 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:8001",
+  "basePath": "/generator",
+  "tags": [
+    {
+      "name": "",
+      "description": ""
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {},
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/csv"
+  ],
+  "paths": {
+    "/generator/": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "generatorId": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "userId": {
+                  "type": "string",
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [],
+        "description": "Retorna geradores que não estejam alocados a um usuário",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/generator/user/{userId}": {
+      "get": {
+        "tags": [],
+        "description": "Retorna dados de geradores com base no id do usuário",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/generator/user/{userId}/energy": {
+      "get": {
+        "tags": [],
+        "description": "Retorna dados de energia dos geradores do usuário",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Pode estar ausente ou possuir valor csv, para emitir relatório em formato de arquivo"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Início do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Fim do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Quantidade de registros a serem retornados"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Considerando o limite, qual a página deve ser retornada"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/generator/user/{userId}/climate": {
+      "get": {
+        "tags": [],
+        "description": "Retorna dados de clima dos geradores do usuário",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Pode estar ausente ou possuir valor csv, para emitir relatório em formato de arquivo"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Início do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Fim do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Quantidade de registros a serem retornados"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Considerando o limite, qual a página deve ser retornada"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/generator/{generatorId}/climate": {
+      "get": {
+        "tags": [],
+        "description": "Retorna dados de clima de um gerador específico",
+        "parameters": [
+          {
+            "name": "generatorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Pode estar ausente ou possuir valor csv, para emitir relatório em formato de arquivo"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Início do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Fim do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Quantidade de registros a serem retornados"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Considerando o limite, qual a página deve ser retornada"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/generator/{generatorId}/energy": {
+      "get": {
+        "tags": [],
+        "description": "Retorna dados de energia de um gerador específico",
+        "parameters": [
+          {
+            "name": "generatorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Pode estar ausente ou possuir valor csv, para emitir relatório em formato de arquivo"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Início do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Fim do intervalo desejado, deve estar no formato ISOString 'yyyy-mm-dd'"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Quantidade de registros a serem retornados"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Considerando o limite, qual a página deve ser retornada"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/generator/{generatorId}": {
+      "get": {
+        "tags": [],
+        "description": "Retorna dados de um gerador",
+        "parameters": [
+          {
+            "name": "generatorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
