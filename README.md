@@ -27,6 +27,11 @@ Inicialmente, instale localmente as seguintes dependências:
 1. Instale o [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/);
 2. Instale o [Docker Compose](https://docs.docker.com/compose/install/).
 
+Esta aplicação utiliza o envio de emails que pode ser habilitada ou desabilitada através da variável de ambiente MAIL_ENABLED no arquivo de configuração de ambiente.
+
+Uma sugestão de servidor de email para desenvolvimento é o https://mailtrap.io, basta criar conta e inserir as credenciais no arquivo de configuração de ambiente como MAIL_USER e MAIL_PASS.
+
+
 ### Subindo a aplicação
 Utilize os seguintes comandos para subir a aplicação
 
