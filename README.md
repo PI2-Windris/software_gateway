@@ -57,7 +57,7 @@ Request Body:
 ```
 {
   "password": "123456",
-  "email": "admin@email.com"
+  "email": "admin@admin.com"
 }
 ```
 
