@@ -57,7 +57,7 @@ Request Body:
 ```
 {
   "password": "123456",
-  "email": "admin@email.com"
+  "email": "admin@admin.com"
 }
 ```
 
@@ -87,7 +87,7 @@ Request Headers:
 ### Rotas do Serviço de Usuário
 
 Há o parâmetro de Query page a ser utilizado para fins de paginação. Por exemplo `/user_service/user?page=10`
-- GET `/user_service/user`
+- GET `/user_service/users`
 ```
 [
   {
@@ -109,7 +109,7 @@ Há o parâmetro de Query page a ser utilizado para fins de paginação. Por exe
 ]
 ```
 
-- GET `/user_service/user/:id`
+- GET `/user_service/users/:id`
 ```
 {
   "id": "58cdd64d-73fc-4a5d-80ff-d11bb2110cd1",
@@ -121,7 +121,7 @@ Há o parâmetro de Query page a ser utilizado para fins de paginação. Por exe
 }
 ```
 
-- POST `/user_service/user`
+- POST `/user_service/users`
 Request Body:
 ```
 {
@@ -144,7 +144,7 @@ Response Body:
 }
 ```
 
-- PUT `/user_service/user/:id`
+- PUT `/user_service/users/:id`
 
 O corpo da request são os campos do perfil de usuário, sendo todos os campso opcionais
 Request Body: 
