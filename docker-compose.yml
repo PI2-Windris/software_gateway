@@ -90,7 +90,10 @@ services:
       MONGO_URI: ${MONGO_URI}
       MQTT_PORT: ${ELETRONIC_GATEWAY_PORT}
       PORT: ${UPDATE_PORT}
-  
+      SECRET: ${SECRET}
+      USER_HOST: ${USER_HOST}
+      USER_PORT: ${USER_PORT}
+
   processing_service:
     build: ../processing_service
     entrypoint: python -m flask run --host=0.0.0.0 --port=${PROCESSING_PORT}
