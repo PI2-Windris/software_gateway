@@ -59,6 +59,18 @@ app.use(
   })
 )
 
+app.use(
+  "/processing",
+  createProxyMiddleware({
+    target: `http://${process.env.PROCESSING_HOST}:${process.env.PROCESSING_PORT}`,
+    changeOrigin: true,
+    pathRewrite: {
+      "^/processing": "",
+    }
+  })
+)
+
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log("Server running on port ", process.env.PORT);
