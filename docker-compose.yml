@@ -43,6 +43,8 @@ services:
       DATA_STORAGE_PORT: ${DATA_STORAGE_PORT}
       UPDATE_HOST: ${UPDATE_HOST}
       UPDATE_PORT: ${UPDATE_PORT}
+      PROCESSING_PORT: ${PROCESSING_PORT}
+      PROCESSING_HOST: ${PROCESSING_HOST}
 
   eletronic_gateway:
     build: ../eletronic_gateway
